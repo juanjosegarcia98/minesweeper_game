@@ -11,7 +11,7 @@ First, by analyzing and dissecting an actual minesweeper game. Whatever you want
 I chose the KDE's version, KMines. Because I do most of my computing in Linux and because it's quite simple.
 
 So, what do you get after analyzing the game? 
-That the game pretty simple (but you have to think a few things): 
+That the game is pretty simple (but you have to think a few things): 
 - It has a rectangular board of cells (a matrix, simple math and data structure) that has a given width and height, and a certain number of mines you have to find (or avoid clicking).
 - Each cell has a state: its initial state, flagged or clicked. It can have a mine or not.
 - It also has a stopwatch to see how quick you beat the game, and optionally save your best times.
@@ -29,7 +29,7 @@ That the game pretty simple (but you have to think a few things):
 > Note: Since I tried until now to build using only Flutter's built-in libraries just for fun, I've left some features that may sound pretty basic for later.
 
 - Persisting the configuration.
-- Saving best times (basic, but I stopped here).
+- Saving best times.
 - A countdown mode, In which you set a timer that goes backwards and you lose if you run out of time.
 - A prettier UI.
 - Custom UI theming.
