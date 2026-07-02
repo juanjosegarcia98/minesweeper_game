@@ -1,5 +1,5 @@
 name: minesweeper_game
-description: "A new Flutter project."
+description: "A humble attempt to build a working minesweeper from scratch."
 publish_to: 'none'
 version: 1.0.0+1
 
