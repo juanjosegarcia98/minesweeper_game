@@ -33,6 +33,11 @@ pubspec.lock
 .pub/
 /build/
 /coverage/
+AppDir/
+linux/
+web/
+appimagetool*
+*.AppImage
 
 # Symbolication related
 app.*.symbols
