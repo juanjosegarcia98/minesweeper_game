@@ -18,9 +18,9 @@ cp -r "$BUNDLE/lib"  AppDir/usr/bin/lib
 cp -r "$BUNDLE/data" AppDir/usr/bin/data
 cp "$APP.png" "AppDir/$APP.png"
 
-cat > AppDir/AppRun << 'EOF'
+cat > AppDir/AppRun << EOF
 #!/bin/bash
-exec "$APPDIR/usr/bin/minesweeper_game" "$@"
+exec "\$APPDIR/usr/bin/$APP" "\$@"
 EOF
 chmod +x AppDir/AppRun
 
