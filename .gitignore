@@ -34,10 +34,7 @@ pubspec.lock
 /build/
 /coverage/
 AppDir/
-linux/
-web/
-appimagetool*
-*.AppImage
+Minesweeper*.AppImage
 
 # Symbolication related
 app.*.symbols

@@ -3,7 +3,7 @@ By Juan José García.
 
 > Note: it may have some little bugs and lack of responsiveness. Maybe I'll keep building features, making improvements or fixing bugs. Or maybe not. I'm always happy to get issues or proposals from anyone.
 
-This is my humble attempt to challenge myself and think a minesweeper from scratch.
+This is my humble attempt to challenge myself and think a minesweeper from scratch. I've tried to use as little AI as possible, just for tutoring me on some topics or tasks like building the AppImage for Linux (I've put the assets and a script to build it).
 
 ## How did I thought it?
 
