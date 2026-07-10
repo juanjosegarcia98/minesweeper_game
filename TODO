@@ -13,3 +13,9 @@ My humble attempt to build a working minesweeper from scratch.
    - [ ] Unify the theme.
    - [ ] Add new themes.
    - [ ] Add custom themes support.
+ - [ ] Add more platform support:
+   - [ ] Web
+   - [ ] Android
+   - [ ] Windows
+   - [ ] Mac
+   - [ ] Iphone
