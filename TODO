@@ -1,0 +1,15 @@
+# Minesweeper
+
+My humble attempt to build a working minesweeper from scratch.
+
+### ToDo
+
+ - [ ] Add configuration file support.
+ - [ ] Add best times saving feature.
+ - [ ] Add time trial game mode: setting before hand 
+ - [ ] Improve UI:
+   - [ ] Add support for zooming in/out the board to better usability in small devices.
+   - [ ] Improve the look of the UI elements (board, cells, buttons).
+   - [ ] Unify the theme.
+   - [ ] Add new themes.
+   - [ ] Add custom themes support.

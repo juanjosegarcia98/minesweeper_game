@@ -1,7 +1,7 @@
 name: minesweeper_game
 description: "A humble attempt to build a working minesweeper from scratch."
 publish_to: 'none'
-version: 1.0.0+1
+version: 0.0.1
 
 environment:
   sdk: ^3.10.4
