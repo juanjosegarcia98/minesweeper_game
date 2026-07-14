@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:minesweeper_game/data/cell_state.dart';
 import 'package:minesweeper_game/data/command.dart';
+import 'package:minesweeper_game/data/functions.dart';
 import 'package:minesweeper_game/data/game.dart';
 import 'package:minesweeper_game/data/game_state.dart';
 import 'package:minesweeper_game/widgets/widgets.dart';
@@ -31,13 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ValueNotifier<List<ValueNotifier<CellState>>>(
         <ValueNotifier<CellState>>[],
       );
-
-  String returnFormattedText(final Duration d) {
-    final int milli = d.inMilliseconds;
-    final String seconds = ((milli ~/ 1000) % 60).toString().padLeft(2, '0');
-    final String minutes = ((milli ~/ 1000) ~/ 60).toString().padLeft(2, '0');
-    return '$minutes:$seconds';
-  }
 
   void overrideCellStates() {
     _cellStates.value = List<ValueNotifier<CellState>>.generate(
@@ -77,18 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     overrideCellStates();
 
-    Game().onClickCell = (final int index) =>
-        _cellStates.value[index].value = ClickedCellState(index);
-
-    Game().onToggleFlag = (final int index, final bool flag) {
-      _cellStates.value[index].value = flag
-          ? FlaggedCellState(index)
-          : InitialCellState(index);
-      if (flag) {
+    Game().onChangeCellState = (final CellState newState) {
+      if (newState.runtimeType == FlaggedCellState) {
         _flaggedMinesCounter.value++;
-      } else {
+      }
+      if (newState.runtimeType == InitialCellState) {
         _flaggedMinesCounter.value--;
       }
+      _cellStates.value[newState.index].value = newState;
+      return;
     };
 
     Game().onNewGame = () {
@@ -141,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (final BuildContext ctx) => AlertDialog(
             title: const Text('Game Over.'),
             content: Text(
-              'Time elapsed: ${returnFormattedText(gameElapsedTime)}',
+              'Time elapsed: ${returnFormattedTimeString(gameElapsedTime)}',
             ),
             actions: <Widget>[
               ElevatedButton(
@@ -177,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (final BuildContext ctx) => AlertDialog(
             title: const Text('You have won!'),
             content: Text(
-              'Time elapsed: ${returnFormattedText(gameElapsedTime)}',
+              'Time elapsed: ${returnFormattedTimeString(gameElapsedTime)}',
             ),
             actions: <Widget>[
               ElevatedButton(

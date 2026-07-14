@@ -19,3 +19,10 @@ Set<int> randomInts({
   }
   return seen;
 }
+
+String returnFormattedTimeString(final Duration elapsedTime) {
+    final int milli = elapsedTime.inMilliseconds;
+    final String seconds = ((milli ~/ 1000) % 60).toString().padLeft(2, '0');
+    final String minutes = ((milli ~/ 1000) ~/ 60).toString().padLeft(2, '0');
+    return '$minutes:$seconds';
+}

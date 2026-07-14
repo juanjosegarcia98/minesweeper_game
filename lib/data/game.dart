@@ -1,3 +1,4 @@
+import 'package:minesweeper_game/data/cell_state.dart';
 import 'package:minesweeper_game/data/command.dart';
 import 'package:minesweeper_game/data/game_board.dart';
 import 'package:minesweeper_game/data/game_config.dart';
@@ -23,8 +24,7 @@ class Game {
   void Function()? onReset;
   void Function()? onGameOver;
   void Function()? onVictory;
-  void Function(int)? onClickCell;
-  void Function(int, bool)? onToggleFlag;
+  void Function(CellState)? onChangeCellState;
 
   GameState state = GameState.ready;
 

@@ -1,3 +1,4 @@
+import 'package:minesweeper_game/data/cell_state.dart';
 import 'package:minesweeper_game/data/difficulty.dart';
 import 'package:minesweeper_game/data/game.dart';
 import 'package:minesweeper_game/data/game_state.dart';
@@ -20,7 +21,8 @@ class StartGameCommand extends Command {
     }
     game.board.click(
       firstClickIndex,
-      (final int index) => game.onClickCell?.call(index),
+      (final int index) =>
+          game.onChangeCellState?.call(ClickedCellState(index)),
     );
     if (game.isOver) {
       return;
@@ -28,7 +30,6 @@ class StartGameCommand extends Command {
     game.stopwatch.start();
     game.state = GameState.started;
     game.onStartGame?.call(firstClickIndex);
-    game.onClickCell?.call(firstClickIndex);
     return;
   }
 }
@@ -95,7 +96,11 @@ class ClickCellCommand extends Command {
       return;
     }
     if (game.isRunning) {
-      game.board.click(index, (final int index) => game.onClickCell?.call(index));
+      game.board.click(
+        index,
+        (final int index) =>
+            game.onChangeCellState?.call(ClickedCellState(index)),
+      );
       return;
     }
   }
@@ -109,7 +114,9 @@ class ToggleFlagCommand extends Command {
   @override
   void execute() {
     final bool flag = game.board.toggleFlag(index);
-    game.onToggleFlag?.call(index, flag);
+    game.onChangeCellState?.call(
+      flag ? FlaggedCellState(index) : InitialCellState(index),
+    );
     return;
   }
 }
