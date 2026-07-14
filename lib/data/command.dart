@@ -1,7 +1,11 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:minesweeper_game/data/cell_state.dart';
 import 'package:minesweeper_game/data/difficulty.dart';
 import 'package:minesweeper_game/data/game.dart';
 import 'package:minesweeper_game/data/game_state.dart';
+import 'package:path_provider/path_provider.dart';
 
 abstract class Command {
   Game game = Game();
@@ -126,14 +130,24 @@ class ChangeDifficultyCommand extends Command {
   final Difficulty newDifficulty;
 
   @override
-  void execute() {
+  Future<void> execute() async {
     game.config.difficulty = newDifficulty;
     game.board.width = game.config.boardWidth;
     game.board.height = game.config.boardHeight;
     game.executeCommand(NewGameCommand());
+
+    await updateConfigFile();
     return;
   }
+
 }
+  Future<void> updateConfigFile() async {
+    final Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
+    unawaited(File(
+      '${appDocumentsDirectory.path}/minesweeperconfig.json',
+    ).writeAsString(Game().config.toJson()));
+    return;
+  }
 
 class ChangeCustomGameSettings extends Command {
   ChangeCustomGameSettings({
@@ -153,6 +167,8 @@ class ChangeCustomGameSettings extends Command {
     game.config.customMineCount = mines;
     if (game.config.difficulty == Difficulty.custom) {
       game.executeCommand(ChangeDifficultyCommand(Difficulty.custom));
+    } else {
+      unawaited(updateConfigFile());
     }
     return;
   }

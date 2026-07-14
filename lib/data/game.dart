@@ -13,7 +13,7 @@ class Game {
 
   late final GameBoard board;
 
-  final GameConfig config = GameConfig();
+  GameConfig config = GameConfig();
 
   final Stopwatch stopwatch = Stopwatch();
 
