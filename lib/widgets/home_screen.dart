@@ -6,6 +6,8 @@ import 'package:minesweeper_game/data/command.dart';
 import 'package:minesweeper_game/data/functions.dart';
 import 'package:minesweeper_game/data/game.dart';
 import 'package:minesweeper_game/data/game_state.dart';
+import 'package:minesweeper_game/widgets/best_times_dialog.dart';
+import 'package:minesweeper_game/widgets/victory_dialog.dart';
 import 'package:minesweeper_game/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -161,34 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _cellStates.value[index].value = FlaggedCellState(index);
       }
       _gameStateNotifier.value = GameState.over;
-      unawaited(
-        showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (final BuildContext ctx) => AlertDialog(
-            title: const Text('You have won!'),
-            content: Text(
-              'Time elapsed: ${returnFormattedTimeString(gameElapsedTime)}',
-            ),
-            actions: <Widget>[
-              ElevatedButton(
-                onPressed: () {
-                  Game().executeCommand(NewGameCommand());
-                  Navigator.pop(context);
-                },
-                child: const Text('New Game'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Game().executeCommand(ResetGameCommand());
-                  Navigator.pop(context);
-                },
-                child: const Text('Reset Game'),
-              ),
-            ],
-          ),
-        ),
-      );
+      VictoryDialog.show(context, gameElapsedTime);
     };
     Game().onReset = () {
       removeStopwatchTimer();
@@ -250,6 +225,10 @@ class _HomeScreenState extends State<HomeScreen> {
               },
         ),
       ],
+      leading: IconButton(
+        onPressed: () => BestTimesDialog.show(context),
+        icon: const Icon(Icons.emoji_events),
+      ),
     ),
     body: Board(cellStates: _cellStates),
     bottomNavigationBar: Material(

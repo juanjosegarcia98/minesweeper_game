@@ -4,8 +4,6 @@ My humble attempt to build a working minesweeper from scratch.
 
 ### ToDo
 
- - [ ] Add configuration file support.
- - [ ] Add best times saving feature.
  - [ ] Add time trial game mode: setting before hand 
  - [ ] Improve UI:
    - [ ] Add support for zooming in/out the board to better usability in small devices.
@@ -19,3 +17,12 @@ My humble attempt to build a working minesweeper from scratch.
    - [ ] Windows
    - [ ] Mac
    - [ ] Iphone
+
+### In progress
+
+
+ - [ ] Add best times saving feature.
+
+### Done
+
+ - [X] ~~Add configuration file support.~~
