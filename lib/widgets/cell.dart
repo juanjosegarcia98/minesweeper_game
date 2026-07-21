@@ -28,9 +28,11 @@ class Cell extends StatelessWidget {
               shape: Border.all(),
               color: Color(notifier.value.color),
               child: Center(
-                child: Text(
-                  notifier.value.text,
-                  style: const TextStyle(fontSize: 30),
+                child: LayoutBuilder(
+                  builder: (_, final BoxConstraints constraints) => Text(
+                    notifier.value.text,
+                    style: TextStyle(fontSize: constraints.maxWidth / 1.6),
+                  ),
                 ),
               ),
             ),
