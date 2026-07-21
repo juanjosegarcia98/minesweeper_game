@@ -28,8 +28,8 @@ That the game is pretty simple (but you have to think a few things):
 
 > Note: Since I tried until now to build using only Flutter's built-in libraries just for fun, I've left some features that may sound pretty basic for later.
 
-- Persisting the configuration.
-- Saving best times.
+- ~~Persisting the configuration.~~
+- ~~Saving best times.~~
 - A countdown mode, In which you set a timer that goes backwards and you lose if you run out of time.
 - A prettier UI.
 - Custom UI theming.
