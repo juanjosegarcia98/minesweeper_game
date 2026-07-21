@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:minesweeper_game/data/difficulty.dart';
-import 'package:minesweeper_game/data/game.dart';
-import 'package:minesweeper_game/data/game_config.dart';
 import 'package:minesweeper_game/widgets/best_times_content.dart';
 
 class BestTimesDialog extends StatelessWidget {
@@ -13,12 +10,9 @@ class BestTimesDialog extends StatelessWidget {
   );
 
   @override
-  Widget build(final BuildContext context) {
-    final Map<Difficulty, List<BestTime>> bestTimes = Game().config.bestTimes;
-
-    return AlertDialog(
+  Widget build(final BuildContext context) => AlertDialog(
       title: const Text('Best times'),
-      content: SizedBox(height: 300,child: BestTimesContent()),
+      content: const SizedBox(height: 300,child: BestTimesContent()),
       actions: <Widget>[
         TextButton(
           onPressed: () {
@@ -28,5 +22,4 @@ class BestTimesDialog extends StatelessWidget {
         ),
       ],
     );
-  }
 }

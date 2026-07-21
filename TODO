@@ -21,8 +21,7 @@ My humble attempt to build a working minesweeper from scratch.
 ### In progress
 
 
- - [ ] Add best times saving feature.
-
 ### Done
 
- - [X] ~~Add configuration file support.~~
+ - [X] Add configuration file support.
+ - [X] Add best times saving feature.

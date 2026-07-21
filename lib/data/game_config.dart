@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:minesweeper_game/data/difficulty.dart';
 import 'package:minesweeper_game/data/functions.dart';
+import 'package:path_provider/path_provider.dart';
 
 class GameConfig {
   factory GameConfig() => _instance;
@@ -51,6 +54,25 @@ class GameConfig {
           ) <
           9);
 
+  bool saveNewRecord(
+    final String name,
+    final Duration time,
+    final DateTime timestamp,
+  ) {
+    final int rank =
+        bestTimes[difficulty]!.lastIndexWhere(
+          (final BestTime record) => record.time < time,
+        ) +
+        1;
+
+    bestTimes[difficulty]!.insert(rank, BestTime(name, time, timestamp));
+    if (bestTimes[difficulty]!.length > 10) {
+      bestTimes[difficulty]!.removeLast();
+    }
+    updateConfigFile();
+    return true;
+  }
+
   void printBestTimes() {
     log('BEST TIMES:');
     for (final Difficulty difficulty in bestTimes.keys) {
@@ -92,6 +114,14 @@ class GameConfig {
     });
     bestTimesSb.write('}');
     return bestTimesSb.toString();
+  }
+
+  Future<void> updateConfigFile() async {
+    final Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
+    unawaited(File(
+      '${appDocumentsDirectory.path}/minesweeperconfig.json',
+    ).writeAsString(toJson()));
+    return;
   }
 }
 

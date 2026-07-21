@@ -230,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
         icon: const Icon(Icons.emoji_events),
       ),
     ),
-    body: Board(cellStates: _cellStates),
+    body: InteractiveViewer(child: Board(cellStates: _cellStates)),
     bottomNavigationBar: Material(
       color: Colors.amber,
       child: Row(
