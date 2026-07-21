@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:minesweeper_game/data/cell_state.dart';
 
@@ -17,6 +19,9 @@ class Cell extends StatelessWidget {
         ) => SizedBox.square(
           dimension: 30,
           child: GestureDetector(
+            onLongPress: Platform.isAndroid
+                ? () => notifier.value.flag()
+                : null,
             onTap: () => notifier.value.click(),
             onSecondaryTap: () => notifier.value.flag(),
             child: Material(

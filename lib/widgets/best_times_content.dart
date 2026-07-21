@@ -12,7 +12,6 @@ class BestTimesContent extends StatefulWidget {
 }
 
 class _BestTimesContentState extends State<BestTimesContent> {
-
   late Difficulty difficulty;
 
   @override
@@ -42,16 +41,33 @@ class _BestTimesContentState extends State<BestTimesContent> {
               ),
         ),
       ),
-      SizedBox(width: 250,child: ListView.builder(itemCount: Game().config.bestTimes[difficulty]!.length,itemBuilder: (context, index) {
-        final BestTime bestTime = Game().config.bestTimes[difficulty]![index];
-        return ListTile(title: Text("#${index + 1} ${bestTime.name} - ${returnFormattedTimeString(bestTime.time)}"));
-      }, padding: EdgeInsets.zero,))
+      SizedBox(
+        width: 250,
+        child: ListView.builder(
+          itemCount: Game().config.bestTimes[difficulty]!.length,
+          itemBuilder: (context, index) {
+            final BestTime bestTime =
+                Game().config.bestTimes[difficulty]![index];
+            return ListTile(
+              title: Text(
+                "#${index + 1} ${bestTime.name} - ${returnFormattedTimeString(bestTime.time)}",
+              ),
+            );
+          },
+          padding: EdgeInsets.zero,
+        ),
+      ),
     ],
   );
 }
 
 class BestTimesTab extends StatelessWidget {
-  const BestTimesTab({required this.text, required this.onTap, this.selected = false, super.key});
+  const BestTimesTab({
+    required this.text,
+    required this.onTap,
+    this.selected = false,
+    super.key,
+  });
 
   final String text;
 
@@ -63,7 +79,9 @@ class BestTimesTab extends StatelessWidget {
   Widget build(final BuildContext context) => Material(
     elevation: selected ? 8 : 0,
     color: selected ? Colors.amberAccent : null,
-    shape: selected ? BoxBorder.fromLTRB(bottom: BorderSide(width: 3)) : null,
+    shape: selected
+        ? BoxBorder.fromLTRB(bottom: const BorderSide(width: 3))
+        : null,
     child: InkWell(
       onTap: onTap,
       child: Padding(

@@ -13,13 +13,14 @@ My humble attempt to build a working minesweeper from scratch.
    - [ ] Add custom themes support.
  - [ ] Add more platform support:
    - [ ] Web
-   - [ ] Android
    - [ ] Windows
    - [ ] Mac
    - [ ] Iphone
 
 ### In progress
 
+- [ ] Add more platform support:
+   - [ ] Android
 
 ### Done
 
